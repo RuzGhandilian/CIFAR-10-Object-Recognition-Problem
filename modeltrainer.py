@@ -67,3 +67,4 @@ class ModelTrainer:
         val_loss = val_loss / len(self.val_loader)
         val_accuracy = 100.0 * correct / total
         return val_loss, val_accuracy
+

@@ -12,8 +12,7 @@ The ResNet architecture put forward by He and et al. in the research paper "Deep
 
 ## Results
 
-Once the training is done the next step is to evaluate the model's performance on the validation set by calculating different metrics such as accuracy. The concept of the experimental model on the test set discloses its generalization ability and demonstrates the effectiveness of the classification of unseen images.
-
+Accuracy 77 %
 ## References
 
 - CIFAR-10 Dataset. [https://www.cs.toronto.edu/~kriz/cifar.html](https://www.cs.toronto.edu/~kriz/cifar.html)

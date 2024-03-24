@@ -7,6 +7,7 @@ from network import BasicBlock, ResNet
 from data import CIFAR10Dataset
 from modeltrainer import ModelTrainer
 
+
 if __name__ == "__main__":
     # Define data transformations
     transform = transforms.Compose([
@@ -38,4 +39,4 @@ if __name__ == "__main__":
 
     # Train the network
     trainer = ModelTrainer(resnet, train_loader, val_loader, criterion, optimizer, scheduler)
-    trainer.train(num_epochs=3)
+    trainer.train(num_epochs=10)
