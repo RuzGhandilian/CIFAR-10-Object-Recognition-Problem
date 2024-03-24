@@ -1,16 +1,41 @@
-# This is a sample Python script.
+import torch
+import torch.nn as nn
+from torchvision import transforms
+from torch.utils.data import Dataset, DataLoader
+import torch.optim as optim
+from network import BasicBlock, ResNet
+from data import CIFAR10Dataset
+from modeltrainer import ModelTrainer
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+if __name__ == "__main__":
+    # Define data transformations
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+    ])
 
+    # Load CIFAR-10 dataset
+    train_dataset = CIFAR10Dataset(root='./data', train=True, transform=transform)
+    test_dataset = CIFAR10Dataset(root='./data', train=False, transform=transform)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    # Split dataset into training, validation, and test sets
+    train_size = int(0.8 * len(train_dataset))
+    val_size = len(train_dataset) - train_size
+    train_dataset, val_dataset = torch.utils.data.random_split(train_dataset, [train_size, val_size])
 
+    # Create data loaders for training, validation, and test sets
+    train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=64)
+    test_loader = DataLoader(test_dataset, batch_size=64)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    # Initialize the ResNet instance
+    resnet = ResNet(BasicBlock, [2, 2, 2, 2])  # ResNet18-like architecture
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    # Define loss function, optimizer, and learning rate scheduler
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(resnet.parameters(), lr=0.001)
+    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)  # Learning rate scheduler
+
+    # Train the network
+    trainer = ModelTrainer(resnet, train_loader, val_loader, criterion, optimizer, scheduler)
+    trainer.train(num_epochs=3)
