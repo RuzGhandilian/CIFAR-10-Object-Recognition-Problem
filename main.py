@@ -39,4 +39,4 @@ if __name__ == "__main__":
 
     # Train the network
     trainer = ModelTrainer(resnet, train_loader, val_loader, criterion, optimizer, scheduler)
-    trainer.train(num_epochs=10)
+    trainer.train(num_epochs=5)

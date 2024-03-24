@@ -12,7 +12,7 @@ The ResNet architecture put forward by He and et al. in the research paper "Deep
 
 ## Results
 
-Accuracy 77 %
+Accuracy 85.4 %
 ## References
 
 - CIFAR-10 Dataset. [https://www.cs.toronto.edu/~kriz/cifar.html](https://www.cs.toronto.edu/~kriz/cifar.html)

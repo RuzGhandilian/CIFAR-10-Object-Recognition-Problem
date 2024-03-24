@@ -49,6 +49,7 @@ class ResNet(nn.Module):
             self.in_planes = planes * block.expansion
         return nn.Sequential(*layers)
 
+
     def forward(self, x):
         out = torch.relu(self.bn1(self.conv1(x)))
         out = self.layer1(out)
@@ -59,4 +60,3 @@ class ResNet(nn.Module):
         out = out.view(out.size(0), -1)
         out = self.linear(out)
         return out
-

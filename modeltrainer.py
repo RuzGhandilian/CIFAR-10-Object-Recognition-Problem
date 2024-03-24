@@ -26,6 +26,7 @@ class ModelTrainer:
             if self.scheduler:
                 self.scheduler.step()
 
+
     def _train_epoch(self):
         self.model.train()
         running_loss = 0.0
@@ -67,4 +68,3 @@ class ModelTrainer:
         val_loss = val_loss / len(self.val_loader)
         val_accuracy = 100.0 * correct / total
         return val_loss, val_accuracy
-
