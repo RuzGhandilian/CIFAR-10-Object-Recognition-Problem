@@ -12,7 +12,8 @@ The ResNet architecture put forward by He and et al. in the research paper "Deep
 
 ## Results
 
-Accuracy 85.4 %
+Epoch [10/10], Train Loss: 0.1014, Train Accuracy: 96.36%, Val Loss: 0.6924, Val Accuracy: 82.41%
+
 ## References
 
 - CIFAR-10 Dataset. [https://www.cs.toronto.edu/~kriz/cifar.html](https://www.cs.toronto.edu/~kriz/cifar.html)
