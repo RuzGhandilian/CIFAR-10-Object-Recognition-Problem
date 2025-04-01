@@ -1,19 +1,41 @@
-# CIFAR-10 Classification with ResNet
+# CIFAR-10 Classification with ResNet18
 
 The project shows a CNN application with ResNet architecture, which is used for image classification of CIFAR-10 dataset. CIFAR-10 is a basic dataset in computer vision containing 60,000 32x32 colored images representing 10 classes.
+## Features
 
-## Dataset
+### Core Enhancements
+- **Architecture**
+  - Dropout-integrated BasicBlock (p=0.1)
+  - Strong input dropout (p=0.3)
+  - Kaiming Normal initialization
 
-The CIFAR-10 dataset contains 60,000 images categorized into 10 classes: bird, cat, car, frog, deer, dog, airplane, horse, ship, and truck. The dataset of 50000 training images and 10000 test images is separated. In this project, we also divide the training set into two halves, one of which is 80% for training and the other one is 20% for validation.
+- **Training**
+  - Mixup augmentation (α=0.4)
+  - Label smoothing (ε=0.1)
+  - Gradient clipping (max_norm=1.0)
 
-## Model Architecture
+- **Monitoring**
+  - Live training/validation plots
+  - Clean vs mixup accuracy tracking
 
-The ResNet architecture put forward by He and et al. in the research paper "Deep Residual Learning for Image Recognition" is the one that we use. The residual connections included in the ResNet architecture are the reason for their success in training, as they are able to solve the problem of gradient vanishing when the training is conducted. The convolutional layers with batch normalization are given the form of a residual block and it is followed by a skip connection in the main structure of ResNet.
+##  Configuration
 
-## Results
+| Parameter          | Default | Recommended Range |
+|--------------------|---------|-------------------|
+| Batch Size         | 128     | [64, 256]         |
+| Base LR            | 0.1     | [0.05, 0.2]       |
+| Mixup α            | 0.4     | [0.2, 0.6]        |
+| Label Smoothing    | 0.1     | [0.05, 0.2]       |
 
-Epoch [10/10], Train Loss: 0.1014, Train Accuracy: 96.36%, Val Loss: 0.6924, Val Accuracy: 82.41%
+##  Performance
+| Metric          | Result |
+|-----------------|--------|
+| Train Accuracy  | 100.0% |
+| Val Accuracy    | 90.01% |
+| Test Accuracy   | 88.80% |
 
-## References
+![Training Curves](loss_plot.png)
 
-- CIFAR-10 Dataset. [https://www.cs.toronto.edu/~kriz/cifar.html](https://www.cs.toronto.edu/~kriz/cifar.html)
+##  References
+- [ResNet Paper](https://arxiv.org/abs/1512.03385)
+- [Mixup](https://arxiv.org/abs/1710.09412)
